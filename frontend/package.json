@@ -2,9 +2,9 @@
   "name": "frontend",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next -p 7777",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 7777",
     "lint": "next lint"
   },
   "dependencies": {
