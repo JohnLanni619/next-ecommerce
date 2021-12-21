@@ -1,4 +1,4 @@
-import { text } from "@keystone-next/fields";
+import { relationship, text } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 import { cloudinaryImage } from '@keystone-next/cloudinary';
 
@@ -10,15 +10,20 @@ export const cloudinary = {
 };
 
 // type of list is imported from keystone... 
-// fields are custom, but field types are imported from keystone
+// field names are custom, but field types are imported from keystone
 export const ProductImage = list({
     fields: {
         image: cloudinaryImage({
             cloudinary,
             label: 'Source'
         }),
-        altText: text({
-            
-        })
+        altText: text(),
+        // references which item the field product corresponds to
+        product: relationship({ref: 'Product.photo'}),
+    },
+    ui: {
+        listView: {
+            initialColumns: ['image', 'altText', 'product']
+        }
     }
-})
+});
